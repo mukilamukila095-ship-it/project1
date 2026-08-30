@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Smart Assistant - Vaastu, Cost & Materials</title>
+    <link rel="stylesheet" href="ai-suggestions.css">
+</head>
+<body>
+
+    <div class="ai-container">
+        
+        <!-- Top Nav -->
+        <div class="top-nav">
+            <a href="myproject.html" class="back-btn">⬅ Back to Projects</a>
+            <h2>🤖 AI Smart Residential Assistant</h2>
+        </div>
+
+        <!-- Input Box Section -->
+        <div class="input-card">
+            <h3>Enter House Details for AI Analysis</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Plot Orientation (Facing Direction)</label>
+                    <select id="facing">
+                        <option value="East">East Facing (கிழக்கு)</option>
+                        <option value="North">North Facing (வடக்கு)</option>
+                        <option value="South">South Facing (தெற்கு)</option>
+                        <option value="West">West Facing (மேற்கு)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Total Built-up Area (Sq. Ft)</label>
+                    <input type="number" id="sqft" placeholder="e.g. 1200" value="1200">
+                </div>
+
+                <div class="form-group">
+                    <label>Budget Quality Type</label>
+                    <select id="budgetType">
+                        <option value="Standard">Standard / Economy</option>
+                        <option value="Premium" selected>Premium / Modern</option>
+                        <option value="Luxury">Luxury / High-End</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn btn-ai" onclick="generateAIAnalysis()">✨ Generate AI Insights</button>
+        </div>
+
+        <!-- AI Output Results Section -->
+        <div class="results-section" id="aiResults">
+            
+            <!-- 1. Vaastu Suggestions Card -->
+            <div class="result-card vaastu-card">
+                <h4>🧭 AI Vaastu Compliance & Recommendations</h4>
+                <ul>
+                    <li><strong>Main Entrance:</strong> North-East (ஈசானியம்) corner is highly recommended for positive energy.</li>
+                    <li><strong>Master Bedroom:</strong> South-West (நைருதி) corner ensures stability and peace.</li>
+                    <li><strong>Kitchen Placement:</strong> South-East (ஆக்னேயம்) direction is ideal for the cooking stove.</li>
+                    <li><strong>Pooja Room:</strong> North-East corner with idol facing East or West.</li>
+                </ul>
+            </div>
+
+            <!-- 2. Cost Estimation Card -->
+            <div class="result-card cost-card">
+                <h4>💰 Estimated Construction Cost Analysis</h4>
+                <div class="cost-overview">
+                    <p class="total-cost">Estimated Total: <span id="costDisplay">₹ 26,40,000</span></p>
+                    <p class="sub-text">Based on ₹2,200 per Sq. Ft for Premium Quality</p>
+                </div>
+                <div class="cost-breakdown">
+                    <div class="cost-item"><span>Civil & Structure (50%):</span> <strong>₹ 13,20,000</strong></div>
+                    <div class="cost-item"><span>Flooring & Tiles (15%):</span> <strong>₹ 3,96,000</strong></div>
+                    <div class="cost-item"><span>Electrical & Plumbing (15%):</span> <strong>₹ 3,96,000</strong></div>
+                    <div class="cost-item"><span>Doors, Windows & Painting (20%):</span> <strong>₹ 5,28,000</strong></div>
+                </div>
+            </div>
+
+            <!-- 3. Material Suggestions Card -->
+            <div class="result-card material-card">
+                <h4>🏗️ Smart Material & Quality Recommendations</h4>
+                <div class="material-grid">
+                    <div class="material-box">
+                        <h5>Cement & Steel</h5>
+                        <p>53 Grade OPC / PPC Cement, TMT 550D Steel Bars (Corrosion resistant).</p>
+                    </div>
+                    <div class="material-box">
+                        <h5>Bricks / Blocks</h5>
+                        <p>AAC Blocks for thermal insulation or High-density Red Bricks.</p>
+                    </div>
+                    <div class="material-box">
+                        <h5>Flooring</h5>
+                        <p>Vitrified Stain-resistant Tiles (4x2 ft) for Hall/Rooms, Anti-skid for Bathrooms.</p>
+                    </div>
+                    <div class="material-box">
+                        <h5>Electrical & Plumbing</h5>
+                        <p>Fire-resistant Copper Wires (FR) & Lead-free CPVC Piping Systems.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function generateAIAnalysis() {
+            var sqft = document.getElementById('sqft').value;
+            var budget = document.getElementById('budgetType').value;
+            var rate = 1800;
+
+            if (budget === "Premium") rate = 2200;
+            if (budget === "Luxury") rate = 3000;
+
+            var totalCost = sqft * rate;
+            document.getElementById('costDisplay').innerText = "₹ " + totalCost.toLocaleString('en-IN');
+            
+            var results = document.getElementById('aiResults');
+            results.style.opacity = 0.5;
+            setTimeout(() => {
+                results.style.opacity = 1;
+                alert("AI Analysis Updated Successfully!");
+            }, 300);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Blueprints</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .top-nav {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #1e293b;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 36px 32px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .title-header {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 16px;
+            padding: 16px 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .title-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        .title-header i {
+            font-size: 22px;
+            color: #2563eb;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 14px;
+            font-weight: 600;
+            background: #fef2f2;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #fecaca;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .blueprints-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="top-nav">
+            <a href="index.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+
+        <div class="card">
+            
+            <div class="title-header">
+                <i class="fa-solid fa-drafting-compass"></i>
+                <h2>AI Architectural Floor Plans & Blueprints</h2>
+            </div>
+
+            <div id="blueprintsContainer">
+                <!-- Error Message Container -->
+                <div class="error-msg">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Error connecting to backend!
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

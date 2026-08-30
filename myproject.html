@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .top-nav {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #1e293b;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .title-header {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 14px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .title-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px dashed #cbd5e1;
+        }
+
+        .section-title i {
+            font-size: 18px;
+        }
+
+        .completed-icon { color: #16a34a; }
+        .progress-icon { color: #eab308; }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .project-card h4 {
+            font-size: 15px;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .project-card p {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 13px;
+            font-weight: 600;
+            background: #fef2f2;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #fecaca;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .empty-text {
+            font-size: 13px;
+            color: #94a3b8;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="top-nav">
+            <a href="index.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Back to Room Selection
+            </a>
+        </div>
+
+        <div class="card">
+            
+            <div class="title-header">
+                <i class="fa-solid fa-house-chimney" style="color: #2563eb; font-size: 20px;"></i>
+                <h2>My Projects</h2>
+            </div>
+
+            <!-- Completed Projects Section -->
+            <div class="section-title">
+                <i class="fa-solid fa-circle-check completed-icon"></i>
+                Completed Projects
+            </div>
+
+            <div id="completedContainer">
+                <!-- Backend Fail ஆனாலோ அல்லது Data லோட் ஆகவில்லை என்றாலோ காட்டும் Message -->
+                <div class="error-msg">
+                    <i class="fa-solid fa-circle-exclamation"></i> Failed to load from backend server!
+                </div>
+            </div>
+
+            <!-- Work in Progress Section -->
+            <div class="section-title">
+                <i class="fa-solid fa-clock progress-icon"></i>
+                Work in Progress
+            </div>
+
+            <div id="progressContainer">
+                <p class="empty-text">No active projects in progress.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Selection</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .top-nav {
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #1e293b;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            margin-bottom: 20px;
+        }
+
+        .card-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .card-header p {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        /* Room Item Styles */
+        .room-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .room-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .room-info i {
+            color: #2563eb;
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Counter Controls */
+        .counter-control {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 2px;
+            width: 100px;
+            justify-content: space-between;
+        }
+
+        .counter-btn {
+            background: transparent;
+            border: none;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+        }
+
+        .counter-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .counter-value {
+            font-weight: 700;
+            font-size: 14px;
+            color: #0f172a;
+        }
+
+        .select-control {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 6px 12px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #0f172a;
+            outline: none;
+            width: 80px;
+            cursor: pointer;
+        }
+
+        /* Additional Options Cards */
+        .option-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 14px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .option-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .icon-blue { background: #e0f2fe; color: #0284c7; }
+        .icon-green { background: #dcfce7; color: #16a34a; }
+        .icon-purple { background: #f3e8ff; color: #9333ea; }
+        .icon-indigo { background: #e0e7ff; color: #4f46e5; }
+
+        .option-content h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+
+        .option-content p {
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .radio-options {
+            display: flex;
+            gap: 16px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+        }
+
+        .radio-label input[type="radio"] {
+            accent-color: #2563eb;
+            width: 15px;
+            height: 15px;
+        }
+
+        /* Note Box */
+        .note-box {
+            background: #eff6ff;
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .note-box i {
+            color: #2563eb;
+            font-size: 16px;
+        }
+
+        .note-box p {
+            font-size: 11px;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        /* Generate Button */
+        .btn-generate {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+            transition: background 0.2s;
+        }
+
+        .btn-generate:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        
+        <div class="top-nav">
+            <button class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</button>
+        </div>
+
+        <div class="container">
+            <!-- LEFT PANEL: Room Selection -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Room Selection</h2>
+                    <p>Select the rooms and features you need in your dream home</p>
+                </div>
+
+                <div class="room-item">
+                    <span class="room-label room-info"><i class="fa-solid fa-bed"></i> Bedrooms</span>
+                    <div class="counter-control">
+                        <button type="button" class="counter-btn" onclick="updateCount('bed', -1)">-</button>
+                        <span class="counter-value" id="bedVal">3</span>
+                        <button type="button" class="counter-btn" onclick="updateCount('bed', 1)">+</button>
+                    </div>
+                </div>
+
+                <div class="room-item">
+                    <span class="room-label room-info"><i class="fa-solid fa-couch"></i> Hall</span>
+                    <div class="counter-control">
+                        <button type="button" class="counter-btn" onclick="updateCount('hall', -1)">-</button>
+                        <span class="counter-value" id="hallVal">1</span>
+                        <button type="button" class="counter-btn" onclick="updateCount('hall', 1)">+</button>
+                    </div>
+                </div>
+
+                <div class="room-item">
+                    <span class="room-label room-info"><i class="fa-solid fa-kitchen-set"></i> Kitchen</span>
+                    <div class="counter-control">
+                        <button type="button" class="counter-btn" onclick="updateCount('kitchen', -1)">-</button>
+                        <span class="counter-value" id="kitchenVal">1</span>
+                        <button type="button" class="counter-btn" onclick="updateCount('kitchen', 1)">+</button>
+                    </div>
+                </div>
+
+                <div class="room-item">
+                    <span class="room-label room-info"><i class="fa-solid fa-bath"></i> Bathrooms</span>
+                    <div class="counter-control">
+                        <button type="button" class="counter-btn" onclick="updateCount('bath', -1)">-</button>
+                        <span class="counter-value" id="bathVal">2</span>
+                        <button type="button" class="counter-btn" onclick="updateCount('bath', 1)">+</button>
+                    </div>
+                </div>
+
+                <div class="room-item">
+                    <span class="room-label room-info"><i class="fa-solid fa-car"></i> Parking</span>
+                    <select class="select-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+
+                <div class="room-item">
+                    <span class="room-label room-info"><i class="fa-solid fa-building-user"></i> Balcony</span>
+                    <select class="select-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+
+                <div class="room-item">
+                    <span class="room-label room-info"><i class="fa-solid fa-plant-wilt"></i> Garden</span>
+                    <select class="select-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+
+                <div class="room-item">
+                    <span class="room-label room-info"><i class="fa-solid fa-om"></i> Pooja Room</span>
+                    <select class="select-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+
+                <div class="room-item">
+                    <span class="room-label room-info"><i class="fa-solid fa-book-open"></i> Study Room</span>
+                    <select class="select-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+
+                <button class="btn-generate">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Blueprint
+                </button>
+            </div>
+
+            <!-- RIGHT PANEL: Additional Options -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Additional Options</h2>
+                    <p>Choose the extra features you want to include</p>
+                </div>
+
+                <!-- Vastu Option -->
+                <div class="option-card">
+                    <div class="option-icon icon-blue">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <div class="option-content">
+                        <h4>Vastu Compliance</h4>
+                        <p>Optimize your home as per Vastu Shastra principles</p>
+                        <div class="radio-options">
+                            <label class="radio-label"><input type="radio" name="vastu" checked> Yes</label>
+                            <label class="radio-label"><input type="radio" name="vastu"> No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cost Estimation Option -->
+                <div class="option-card">
+                    <div class="option-icon icon-green">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                    </div>
+                    <div class="option-content">
+                        <h4>Cost Estimation</h4>
+                        <p>Get estimated cost for construction and materials</p>
+                        <div class="radio-options">
+                            <label class="radio-label"><input type="radio" name="cost" checked> Yes</label>
+                            <label class="radio-label"><input type="radio" name="cost"> No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Material Details Option -->
+                <div class="option-card">
+                    <div class="option-icon icon-purple">
+                        <i class="fa-solid fa-cubes"></i>
+                    </div>
+                    <div class="option-content">
+                        <h4>Material Details</h4>
+                        <p>View detailed list of materials required</p>
+                        <div class="radio-options">
+                            <label class="radio-label"><input type="radio" name="material" checked> Yes</label>
+                            <label class="radio-label"><input type="radio" name="material"> No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preferred View Option (2D / 3D) -->
+                <div class="option-card">
+                    <div class="option-icon icon-indigo">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div class="option-content">
+                        <h4>Preferred View</h4>
+                        <p>Choose your plan rendering style</p>
+                        <div class="radio-options">
+                            <label class="radio-label"><input type="radio" name="view" checked> 2D Plan</label>
+                            <label class="radio-label"><input type="radio" name="view"> 3D View</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <i class="fa-regular fa-lightbulb"></i>
+                    <p>Note: You can change these options later also from the dashboard.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function updateCount(id, change) {
+            const el = document.getElementById(id + 'Val');
+            let val = parseInt(el.innerText) + change;
+            if (val >= 0) {
+                el.innerText = val;
+            }
+        }
+    </script>
+</body>
+</html>

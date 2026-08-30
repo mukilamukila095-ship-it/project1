@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint Preview - AI Blueprint Pro</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Top Header Navigation */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            padding: 15px 25px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .back-btn:hover {
+            color: #2563eb;
+        }
+
+        .btn-edit {
+            background-color: #2563eb;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-edit:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Images Preview Section */
+        .preview-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .img-card {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            text-align: center;
+        }
+
+        .img-card h3 {
+            font-size: 14px;
+            background: #0f172a;
+            color: white;
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .img-card img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #f1f5f9;
+        }
+
+        /* Details Analysis Section */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .info-card {
+            background: #ffffff;
+            padding: 22px;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .card-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .icon-box {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .card-head h4 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .info-list li {
+            display: flex;
+            justify-content: space-between;
+            color: #475569;
+        }
+
+        .info-list strong {
+            color: #0f172a;
+        }
+
+        .vastu-tag {
+            background: #dcfce7;
+            color: #15803d;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        @media (max-width: 800px) {
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Top Navigation Bar -->
+        <div class="top-nav">
+            <a href="dashboard.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Dashboard
+            </a>
+            <div>
+                <!-- ONLY EDIT BUTTON (No Download Button) -->
+                <a href="index.html" class="btn-edit">
+                    <i class="fa-solid fa-pen-to-square"></i> Edit Options
+                </a>
+            </div>
+        </div>
+
+        <div class="preview-title">AI Blueprint Preview & Analysis</div>
+
+        <!-- 1. 2D & 3D Image Preview -->
+        <div class="image-grid">
+            <div class="img-card">
+                <h3>2D FLOOR PLAN VIEW</h3>
+                <img id="img2D" src="https://image.pollinations.ai/prompt/architectural%202d%20floor%20plan%20blueprint,%20top%20down%20layout,%2040x50%20ft,%203%20bedrooms?width=1024&height=1024&nologo=true" alt="2D Blueprint">
+            </div>
+            <div class="img-card">
+                <h3>3D ISOMETRIC VIEW</h3>
+                <img id="img3D" src="https://image.pollinations.ai/prompt/3d%20isometric%20cutaway%20floor%20plan%20render,%20top%20down%20furnished%20house%20layout?width=1024&height=1024&nologo=true" alt="3D Model View">
+            </div>
+        </div>
+
+        <!-- 2. Vastu, Cost & Material Details -->
+        <div class="details-grid">
+            
+            <!-- Vastu Details Card -->
+            <div class="info-card">
+                <div class="card-head">
+                    <div class="icon-box" style="background: #e0f2fe; color: #0284c7;">
+                        <i class="fa-solid fa-dharmachakra"></i>
+                    </div>
+                    <h4>Vastu Suggestions</h4>
+                </div>
+                <ul class="info-list">
+                    <li>Main Entrance: <strong>North-East Corner</strong> <span class="vastu-tag">OK</span></li>
+                    <li>Master Bedroom: <strong>South-West Direction</strong> <span class="vastu-tag">OK</span></li>
+                    <li>Kitchen Location: <strong>South-East (Agni Moolai)</strong> <span class="vastu-tag">OK</span></li>
+                    <li>Pooja Room: <strong>East Facing</strong> <span class="vastu-tag">OK</span></li>
+                </ul>
+            </div>
+
+            <!-- Cost Estimation Card -->
+            <div class="info-card">
+                <div class="card-head">
+                    <div class="icon-box" style="background: #dcfce7; color: #16a34a;">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                    </div>
+                    <h4>Cost Estimation</h4>
+                </div>
+                <ul class="info-list">
+                    <li>Built-up Area: <strong>1650 Sq.ft</strong></li>
+                    <li>Approx. Rate / Sq.ft: <strong>₹ 2,200</strong></li>
+                    <li>Structure Cost: <strong>₹ 24,000,00</strong></li>
+                    <li>Finishing Cost: <strong>₹ 12,300,00</strong></li>
+                    <li style="border-top: 1px dashed #cbd5e1; padding-top: 8px; margin-top: 4px;">
+                        <strong>Total Estimated Budget:</strong> 
+                        <strong style="color: #16a34a; font-size: 16px;">₹ 36.3 Lakhs</strong>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Material Details Card -->
+            <div class="info-card">
+                <div class="card-head">
+                    <div class="icon-box" style="background: #f3e8ff; color: #9333ea;">
+                        <i class="fa-solid fa-cubes"></i>
+                    </div>
+                    <h4>Material Requirements</h4>
+                </div>
+                <ul class="info-list">
+                    <li>Cement Required: <strong>~ 650 Bags</strong></li>
+                    <li>Steel / Rebar: <strong>~ 4.5 Tons</strong></li>
+                    <li>Bricks / Blocks: <strong>~ 18,000 Pcs</strong></li>
+                    <li>Sand & Aggregates: <strong>~ 3,200 Cu.ft</strong></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
